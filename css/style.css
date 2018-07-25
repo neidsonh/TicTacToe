@@ -2,7 +2,7 @@
     font-family: sans-serif;
 }
 
-/* UNIVERSAL STYLES */
+/* ESTILOS UNIVERSAIS */
  .center {
     margin-right: auto;
     margin-left: auto;
@@ -12,7 +12,7 @@
     font-style: italic;
     text-decoration: underline;
 }
-/* ELEMENT STYLES */
+/* ESTILOS DE ELEMENTOS */
  h1, h4 {
     text-align: center;
     color: #666666;
@@ -35,7 +35,7 @@ p {
     padding: 5px 15px 5px 15px;
     margin-bottom: 50px;
 }
-/* BOARD STYLES */
+/* ESTILOS DAS BORDAS */
  #board-outer {
     height: 350px;
     width: 350px;
