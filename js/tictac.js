@@ -1,12 +1,12 @@
-﻿// VARIABLES
+﻿// VARIAVÉIS
 
 var human = 'x'; // turn = 0
 var computer = 'o'; // turn = 1
 var compMove;
-var turn = 0; // toggles btw 0 and 1 for switching turns
+var turn = 0; // alterna entre 0 e 1 para alternar as voltas (turn)
 
-var boardCheck; // function to check value in each cell
-var a1; // value within each cell
+var boardCheck; // função para verificar o valor em cada célula
+var a1; // valor dentro de cada célula
 var a2;
 var a3;
 var b1;
@@ -16,17 +16,17 @@ var c1;
 var c2;
 var c3;
 
-var checkWin; // function that checks the board for winning combo
-var xWin = false; // true if X wins 
-var oWin = false; // true if O wins 
+var checkWin; // função que verifica a placa para ganhar combo
+var xWin = false; // verdadeiro se X ganhou
+var oWin = false; // verdadeiro se O ganhou 
 var velha = false;
-var winAlert; // function that declares winner and restarts game
+var winAlert; // função que declara vencedor e reinicia o jogo
 
 var newGame;
 var clearBoard;
 
 
-// PLACES AN X OR O IN THE BOX WHEN CLICKED. TOGGLES. 
+// COLOCA UM X OU O NA CAIXA QUANDO CLICADO. TÓPICOS.
 var newGame = function () {
     $('td').one('click', function (event) {
         if (turn == 0) {
@@ -42,12 +42,13 @@ var newGame = function () {
 };
 
 
-// INITIALIZES GAME - keep after var newGame
+// INICIALIZA O JOGO - continue após var newGame
 $(document).ready(function () {
     newGame();
 });
 
-// COMP MOVE AI DETECTS IF THERE ARE TWO IN A ROW NEXT TO AN EMPTY CELL AND PLACES MOVE THERE
+
+// COMP MOVE AI DETECTA SE HÁ DOIS NA LINHA AO LADO DE UMA CÉLULA VAZIA E OS LUGARES SE MOVEM PARA LÁ
 var compMove = function () {
     if (a1 == "" && ((a3 == "x" && a2 == "x") || 
                      (c3 == "x" && b2 == "x") || 
@@ -140,7 +141,7 @@ var compMove = function () {
                                             $('#b2').text("o");
                                             turn = 0;
                                     }
-                                        else { // IF NO OPP TO BLOCK A WIN, THEN PLAY IN ONE OF THESE SQUARES
+                                        else { // SE NAO BLOQUEAR PARA GANHAR, ENTÃO JOGAR EM UM DESTES QUADRADOS
                                             if (b2 == "") {
                                                 $('#b2').text("o");
                                                 turn = 0;
@@ -195,8 +196,7 @@ var compMove = function () {
  };
 
 
-// CREATES A FUNCTION TO DETECT WHAT IS IN EACH BOX AFTER EACH MOVE
-boardCheck = function () {
+// CRIA UMA FUNÇÃO PARA DETECTAR O QUE ESTÁ EM CADA CAIXA DEPOIS DE CADA MOVIMENTO
     a1 = $('#a1').html();
     a2 = $('#a2').html();
     a3 = $('#a3').html();
@@ -208,21 +208,21 @@ boardCheck = function () {
     c3 = $('#c3').html();
 };
 
-// CREATES A FUNCTION TO DETECT A WIN OR A TIE
+// CRIA UMA FUNÇÃO PARA DETECTAR UMA VITÓRIA OU UM TIE
 checkWin = function () { // CHECKS IF X WON
-    if ((a1 == a2 && a1 == a3 && (a1 == "x")) || //first row
-    (b1 == b2 && b1 == b3 && (b1 == "x")) || //second row
-    (c1 == c2 && c1 == c3 && (c1 == "x")) || //third row
-    (a1 == b1 && a1 == c1 && (a1 == "x")) || //first column
-    (a2 == b2 && a2 == c2 && (a2 == "x")) || //second column
-    (a3 == b3 && a3 == c3 && (a3 == "x")) || //third column
+    if ((a1 == a2 && a1 == a3 && (a1 == "x")) || //primeira linha
+    (b1 == b2 && b1 == b3 && (b1 == "x")) || //secunda linha
+    (c1 == c2 && c1 == c3 && (c1 == "x")) || //terceira linha
+    (a1 == b1 && a1 == c1 && (a1 == "x")) || //primeira coluna
+    (a2 == b2 && a2 == c2 && (a2 == "x")) || //segunda colna
+    (a3 == b3 && a3 == c3 && (a3 == "x")) || //terceira coluna
     (a1 == b2 && a1 == c3 && (a1 == "x")) || //diagonal 1
     (a3 == b2 && a3 == c1 && (a3 == "x")) //diagonal 2
     ) {
         xWin = true;
         winAlert();
 
-    } else { // CHECKS IF O WON
+    } else { // VERIFICAR SE O WON
         if ((a1 == a2 && a1 == a3 && (a1 == "o")) || //first row
         (b1 == b2 && b1 == b3 && (b1 == "o")) || //second row
         (c1 == c2 && c1 == c3 && (c1 == "o")) || //third row
@@ -235,7 +235,7 @@ checkWin = function () { // CHECKS IF X WON
             oWin = true;
             winAlert();
 
-        } else { // CHECKS FOR TIE GAME IF ALL CELLS ARE FILLED
+        } else { // VERIFICAÇÕES PARA O JOGO DE GRAVAÇÃO SE TODAS AS CÉLULAS FOR CHAMADAS
             if (((a1 == "x") || (a1 == "o")) && ((b1 == "x") || (b1 == "o")) && ((c1 == "x") || (c1 == "o")) && ((a2 == "x") || (a2 == "o")) && ((b2 == "x") || (b2 == "o")) && ((c2 == "x") || (c2 == "o")) && ((a3 == "x") || (a3 == "o")) && ((b3 == "x") || (b3 == "o")) && ((c3 == "x") || (c3 == "o"))) {
                 velha = true;
                 winAlert();
@@ -245,17 +245,17 @@ checkWin = function () { // CHECKS IF X WON
 };
 
 
-// DECLARES WHO WON
+// DECLARA QUEM GANHO
 var winAlert = function () {
     if (xWin == true) {
         alert("Você ganhou!");
         location.reload();
-        clearBoard(); // THIS DOESN'T WORK
+        clearBoard(); // Isso não funciona
     } else {
         if (oWin == true) {
             alert("Desculpe, você perdeu!");
             location.reload();
-            clearBoard(); // THIS DOESN'T WORK
+            clearBoard(); // Isso não funciona
         } else {
             if (velha == true) {
                 alert("Velha!");
@@ -267,7 +267,7 @@ var winAlert = function () {
 };
 
 
-// NEWGAME BUTTON CLEARS THE BOARD, RESTARTS GAME, AND RESETS THE WINS
+// O BOTÃO NEWGAME APAGA O QUADRO, REINTE O JOGO E REDE OS VITÓRIOS
 var clearBoard = $('#restart').click(function (event) {
     a1 = $('#a1').text("");
     b1 = $('#b1').text("");
@@ -281,12 +281,12 @@ var clearBoard = $('#restart').click(function (event) {
     xWin = false;
     oWin = false;
     newGame();
-    location.reload(); // WITHOUT THIS, THERE'S A BUG WHICH PLACES MULTIPLE 0'S ON ALL GAMES AFTER THE FIRST
+    location.reload(); // SEM ESTE, HÁ UM ERRO QUE COLOCA O MÚLTIPLO 0 EM TODOS OS JOGOS APÓS O PRIMEIRO
 });
 
-// STILL NEED TO FIX:
-// * Alert for tie game or xWin appears twice
-// * X's can replace O's
-// * Missed opportunities for O to win
-// * Almost never let's human win
-// * Clean up logic for compMove
+// AINDA PRECISA FIXAR:
+// * Alerta para jogo de empate ou xWin aparece duas vezes
+// * X pode substituir O's
+// * Oportunidades perdidas para O ganhar
+// * Quase nunca vamos ganhar humano
+// * Limpar lógica para compMove
